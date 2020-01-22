@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 
-public class NationalRatesTest {
+public class NationalRatesTest extends BaseTest {
 
     @Test
     public void ratesDateRelevant() {
@@ -27,17 +27,21 @@ public class NationalRatesTest {
                 body("rates[0].date", equalTo(getNowDate.getNowDate()));
 
 
-        Response res = RestAssured.given().
+        Response responseNationalRates = RestAssured.given().
                 when().
                 get(BasePaths.BASE_URI + "nationalRates");
-        JsonPath jsonPathValidator = res.jsonPath();
+        JsonPath jsonPathValidator = responseNationalRates.jsonPath();
         List<Object> listOfDates = jsonPathValidator.getList("rates.date");
         for (Object i : listOfDates) {
-            Assert.assertEquals(getNowDate.getNowDate(), i);
+            softAssertions.assertThat(getNowDate.getNowDate()==i);
+            softAssertions.assertAll();
+//            Assert.assertEquals(getNowDate.getNowDate(), i);
         }
+
         List<Object> listOfRates = jsonPathValidator.getList("rates.rate");
         for (Object i : listOfRates) {
-            Assert.assertNotNull(i);
+            softAssertions.assertThat(i!=null);
+            softAssertions.assertAll();
         }
     }
 }

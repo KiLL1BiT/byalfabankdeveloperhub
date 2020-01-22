@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class RatesTest {
+public class RatesTest extends BaseTest{
 
     @Test
     public void ratesTest() {
@@ -20,10 +20,10 @@ public class RatesTest {
                 then().
                 assertThat().
                 statusCode(200);
-        Response response = RestAssured.given().
+        Response responseRates = RestAssured.given().
                 when().
                 get(BasePaths.BASE_URI + "rates");
-        JsonPath jsonPathValidator = response.jsonPath();
+        JsonPath jsonPathValidator = responseRates.jsonPath();
 
         List<Object> listOfSellRates = jsonPathValidator.getList("rates.sellRate");
         List<Object> listOfBuyRates = jsonPathValidator.getList("rates.buyRate");
@@ -32,13 +32,13 @@ public class RatesTest {
             Object i = listOfSellRates.get(s);
                 Double jk = new Double(j.toString());
                 Double ik = new Double(i.toString());
-                Boolean a;
+                Boolean ratesBalanceTrue;
                 if (jk > ik) {
-                    a = true;
+                    ratesBalanceTrue = true;
                 } else {
-                    a = false;
+                    ratesBalanceTrue = false;
                 }
-                    Assert.assertTrue(a);
+                    Assert.assertTrue(ratesBalanceTrue);
         }
     }
 }
