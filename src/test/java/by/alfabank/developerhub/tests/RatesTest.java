@@ -1,6 +1,6 @@
 package by.alfabank.developerhub.tests;
 
-import by.alfabank.developerhub.helpers.Paths111;
+import by.alfabank.developerhub.helpers.BasePaths;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -16,13 +16,13 @@ public class RatesTest {
         RestAssured.given().
                 param("currencyCode", "840").
                 when().
-                get(Paths111.BASE_URI + "rates").
+                get(BasePaths.BASE_URI + "rates").
                 then().
                 assertThat().
                 statusCode(200);
         Response response = RestAssured.given().
                 when().
-                get(Paths111.BASE_URI + "rates");
+                get(BasePaths.BASE_URI + "rates");
         JsonPath jsonPathValidator = response.jsonPath();
 
         List<Object> listOfSellRates = jsonPathValidator.getList("rates.sellRate");
