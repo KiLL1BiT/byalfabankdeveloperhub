@@ -28,12 +28,12 @@ public class RatesTest extends BaseTest{
         List<Object> listOfSellRates = jsonPathValidator.getList("rates.sellRate");
         List<Object> listOfBuyRates = jsonPathValidator.getList("rates.buyRate");
         for (int s = 0; s < listOfBuyRates.size(); s++) {
-            Object j = listOfBuyRates.get(s);
-            Object i = listOfSellRates.get(s);
-                Double jk = new Double(j.toString());
-                Double ik = new Double(i.toString());
+            Object buyRates = listOfBuyRates.get(s);
+            Object sellRates = listOfSellRates.get(s);
+                Double buyRatesTypeDouble = new Double(buyRates.toString());
+                Double sellRatesTypeDouble = new Double(sellRates.toString());
                 Boolean ratesBalanceTrue;
-                if (jk > ik) {
+                if (buyRatesTypeDouble > sellRatesTypeDouble) {
                     ratesBalanceTrue = true;
                 } else {
                     ratesBalanceTrue = false;
