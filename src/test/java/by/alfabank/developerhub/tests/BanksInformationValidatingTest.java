@@ -4,18 +4,16 @@ import by.alfabank.developerhub.helpers.BasePaths;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BanksTest extends BaseTest {
+
+public class BanksInformationValidatingTest extends BaseTest {
+
     private SoftAssertions softAssertions;
+
     @Test
     public void banksTest() {
         RestAssured.given().

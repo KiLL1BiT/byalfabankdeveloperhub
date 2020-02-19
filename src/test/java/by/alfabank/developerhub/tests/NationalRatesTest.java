@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.*;
 public class NationalRatesTest extends BaseTest {
 
     @Test
-    public void ratesDateRelevant() {
+    public void ratesDateRelevantDate() {
 
         RestAssured.given().
                 param("currencyCode", "840").
@@ -26,7 +26,6 @@ public class NationalRatesTest extends BaseTest {
                 statusCode(200).
                 body("rates[0].date", equalTo(getNowDate.getNowDate()));
 
-
         Response responseNationalRates = RestAssured.given().
                 when().
                 get(BasePaths.BASE_URI + "nationalRates");
@@ -35,7 +34,6 @@ public class NationalRatesTest extends BaseTest {
         for (Object i : listOfDates) {
             softAssertions.assertThat(getNowDate.getNowDate()==i);
             softAssertions.assertAll();
-//            Assert.assertEquals(getNowDate.getNowDate(), i);
         }
 
         List<Object> listOfRates = jsonPathValidator.getList("rates.rate");

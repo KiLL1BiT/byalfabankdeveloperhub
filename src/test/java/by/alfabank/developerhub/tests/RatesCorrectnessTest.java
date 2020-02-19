@@ -9,10 +9,10 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class RatesTest extends BaseTest{
+public class RatesCorrectnessTest extends BaseTest{
 
     @Test
-    public void ratesTest() {
+    public void ratesCorrectnessTest() {
         RestAssured.given().
                 param("currencyCode", "840").
                 when().
